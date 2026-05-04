@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+<div class="container">
+    <div class="card shadow-sm border-0">
+        <table class="table table-hover align-middle mb-0 text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach((p) => { %>
+                    <tr>
+                        <td><%= p.id %></td>
+                        <td><img src="/assets/img/<%= p.image %>" class="product-img"></td>
+                        <td><%= p.name %></td>
+                        <td><span class="badge bg-secondary"><%= p.category %></span></td>
+                        <td class="text-primary fw-bold">฿<%= p.price %></td>
+                        <td><%= p.stock %></td>
+                        <td>
+                            <a href="/product/edit/<%= p.id %>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="/product/delete/<%= p.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Del</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%- include('partials/footer.ejs') %>

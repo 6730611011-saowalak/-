@@ -1,0 +1,68 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+
+<div class="container py-4">
+    <div class="form-box">
+        <a class="btn btn-secondary mb-3" href="/">Go Back</a>
+
+        <div class="card">
+            <div class="card-body">
+                <h3>Edit Product</h3>
+                <p class="text-muted">แก้ไขข้อมูลสินค้าในคลัง</p>
+                <hr>
+
+                <% if (message != '') { %>
+                    <div class="alert alert-danger text-center">
+                        <%= message %>
+                    </div>
+                <% } %>
+
+                <% if (product) { %>
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" class="form-control" name="name" value="<%= product.name %>" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <input type="text" class="form-control" name="category" value="<%= product.category %>" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="number" class="form-control" name="price" value="<%= product.price %>" min="0" step="0.01" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Stock</label>
+                            <input type="number" class="form-control" name="stock" value="<%= product.stock %>" min="0" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Product Image</label>
+                            <input type="file" class="form-control" name="image" id="imageInput" accept="image/*">
+                            <input type="hidden" name="old_image" value="<%= product.image %>">
+                        </div>
+
+                        <div class="mb-3">
+                            <p>Current Image</p>
+                            <img 
+                                id="previewImage"
+                                src="/assets/img/<%= product.image %>" 
+                                class="preview-img"
+                            >
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Update Product</button>
+                        <a href="/" class="btn btn-secondary">Cancel</a>
+                    </form>
+                <% } else { %>
+                    <p class="text-center">Product not found.</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

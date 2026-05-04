@@ -1,0 +1,58 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+
+<div class="container py-4">
+    <div class="form-box">
+        <a class="btn btn-secondary mb-3" href="/">Go Back</a>
+
+        <div class="card">
+            <div class="card-body">
+                <h3>Add Product</h3>
+                <p class="text-muted">เพิ่มสินค้าใหม่ในคลังสินค้า</p>
+                <hr>
+
+                <% if (message != '') { %>
+                    <div class="alert alert-danger text-center">
+                        <%= message %>
+                    </div>
+                <% } %>
+
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Product Name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <input type="text" class="form-control" name="category" placeholder="Category" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <input type="number" class="form-control" name="price" placeholder="Price" min="0" step="0.01" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Stock</label>
+                        <input type="number" class="form-control" name="stock" placeholder="Stock" min="0" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Product Image</label>
+                        <input type="file" class="form-control" name="image" id="imageInput" accept="image/*" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <img id="previewImage" class="preview-img" style="display:none;">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Add Product</button>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>
